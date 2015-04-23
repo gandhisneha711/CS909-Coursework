@@ -264,3 +264,22 @@ optimalScores(sVal)
 cluster.stats(d, cl$clustering, km$cluster)
 cluster.stats(d, cl$clustering, hc.grps)
 cluster.stats(d, km$cluster, hc.grps)
+
+#cluster evaluations
+library(clusteval)
+# We use 10 clusters, each with up to 10 observations. The sample sizes are randomly chosen
+num_clusters <- 5
+sample_sizes <- sample(d, num_clusters, replace = TRUE)
+y <- unlist(sapply(seq_len(num_clusters), function(k) 
+{
+  rep(k, sample_sizes[k])
+}))
+
+# Use 10 reps per group.
+boot_stratified_omit(y, num_reps = 10)
+# Use the default number of reps per group.
+boot_stratified_omit(y)
+
+cluster_similarity(cl$clustering, km$cluster)
+cluster_similarity(cl$clustering, hc.grps)
+cluster_similarity(km$cluster, hc.grps)
