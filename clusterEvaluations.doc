@@ -1,0 +1,26 @@
+
+4.	Cluster Evaluation using clusteval library
+The code for this is in the code file.
+
+The similarity between the two clusterings:
+	cluster_similarity(cl$clustering, hc.grps)
+[1] 0.3455184
+cluster_similarity(cl$clustering, km$cluster)
+[1] 0.2370722
+cluster_similarity(km$cluster, hc.grps)
+[1] 0.1374583
+
+
+For a set of clustering labels, this function computes the comembership of all pairs of observations. Basically, two observations are said to be comembers if they are clustered together.
+set.seed(42)
+n <- 10
+labels <- sample.int(d, n, replace = TRUE)
+comembership_out <- comembership(labels)
+comembership_out
+ [1] 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+# Notice that the number of comemberships is 'n choose 2'.
+length(comembership_out) == choose(n, 2)
+[1] TRUE
+
+	Do the above for n>10 for bigger comembership_out.
+	Can also do cluster stability test by using clustomitout function.
