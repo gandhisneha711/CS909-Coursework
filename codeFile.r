@@ -1,7 +1,7 @@
 ---
 output: word_document
 ---
-reuters = read.csv(file="C:/Users/gandhisneha711/Downloads/data/reutersCSV.csv/reutersCSV.csv",header=T,sep=",")
+reuters = read.csv(file="reutersCSV.csv",header=T,sep=",")
 
 
 
