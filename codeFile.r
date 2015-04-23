@@ -4,7 +4,6 @@ output: word_document
 reuters = read.csv(file="reutersCSV.csv",header=T,sep=",")
 
 
-
 # ****......   Task I   ......***
 
 
@@ -152,13 +151,13 @@ for (i in 1:k)
   #Keep only the "type" column
   ts.df <- rbind(ts.df, as.data.frame(set.test.tmp[,(N+1)]))
 }
-
+va
 
 #Adding predictions and actual type
 result <- cbind(pred.df, ts.df[, 1])
 names(result) <- c("Predicted", "Original")
 validation.check <- table(pred = result$Predicted, true = result$Original)
-  
+
 #estimating	accuracy,	precision	and	recall
 measureFunc = function(data)
 {
@@ -219,8 +218,8 @@ library(fpc)
 
 #k-means clustering
 km <- kmeans(sc, 10)
-km
 km.table <- table(set.complete$type, km$cluster)
+km.table
 randIndex(km.table)
 plotcluster(sc, km$cluster)
 
@@ -234,12 +233,12 @@ pairs(clus[1:5], cl$clustering[1:5])
 
 #hierarchical clustering
 hc <- hclust(d, method="average")
-plot(hc, hang = -1, labels=set.complete$type, cex=0.1)
-hc.grps <- cutree(hc, k=10) # cut tree into 10 clusters
+plot(hc, hang = -1, labels=set.complete$type, cex=0.3)
+hc.grps <- cutree(hc, k=10)
 #making borders
 rect.hclust(hc, k=10, border="red")
-#taking a sample of 100 records from dataset
-samp <- sample(1:dim(sc)[1], 100)
+#taking only 50 samples
+samp <- sample(1:dim(sc)[1], 50)
 dataSample <- sc[samp,]
 hc <- hclust(dist(dataSample), method="ave")
 plot(hc, hang = -1, labels=set.complete$type[samp], cex=0.7)
