@@ -1,0 +1,1 @@
+-> To run this code you need to have the reuters.csv file in the same folder the code.
